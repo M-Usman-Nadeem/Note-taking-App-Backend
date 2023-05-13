@@ -4,11 +4,11 @@ export const auth = async (req, res, next) => {
 console.log(req.header)
 if(req.body.token){
     try{
-let token=req.body.token
-console.log('token',token)
-let decodedToken=jwt.verify(token,"Secret Key")
-console.log(decodedToken)
-
+let token=req.body.token;
+console.log('token',token);
+let decodedToken=jwt.verify(token,"Secret Key");
+console.log(decodedToken);
+next()
     }catch(err){
 
     }
