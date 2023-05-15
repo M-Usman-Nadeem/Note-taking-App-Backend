@@ -8,7 +8,12 @@ let token=req.body.token;
 console.log('token',token);
 let decodedToken=jwt.verify(token,"Secret Key");
 console.log(decodedToken);
-next()
+// req.user=decodedToken
+// if(decodedToken){
+// }
+    
+res.json(decodedToken)
+// next()
     }catch(err){
 
     }

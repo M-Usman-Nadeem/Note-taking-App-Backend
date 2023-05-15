@@ -10,6 +10,7 @@ const RegisterSchema = new Schema({
   password:{
     type:String,
     required:true, default: "",
-  }
+  },
+  
 });
 export default model.Users || model('Users',RegisterSchema)
