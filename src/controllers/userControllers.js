@@ -19,7 +19,7 @@ async function doRegisterUser(req, res, next) {
       password: hashedPassword(password),
     });
     await user.save();
-    const token = jwt.sign({ id: user._id, email, iat: 10 }, "Secret Key");
+    const token = jwt.sign({ id: user._id, email }, "Secret Key");
     res.json({
       message: "doRegisterUser Success",
       token,
@@ -30,17 +30,17 @@ async function doRegisterUser(req, res, next) {
 }
 async function doLogin(req, res, next) {
   const { email, password } = req.body;
-
+console.log(req.body)
   try {
     const user = await userModel.findOne({ email });
-    const result = await bcrypt.compare(myPlaintextPassword, user.password);
+    const result = await bcrypt.compare(password, user.password);
     console.log(result, "result");
     if (result) {
       const token = jwt.sign({ id: user._id, email }, "Secret Key");
+      console.log(token)
       res.json({
         message: "login Success",
         email,
-        password,
         token,
       });
     }
