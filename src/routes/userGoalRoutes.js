@@ -1,8 +1,13 @@
-import {Router} from 'express'
-import { auth } from '../middleware/auth.js'
-import { addGoals,getGoals } from '../controllers/userGoalsControllers.js'
-const routes=Router()
+import { Router } from "express";
+import { auth } from "../middleware/auth.js";
+import {
+  addGoals,
+  getGoals,
+  updateGoals,
+} from "../controllers/userGoalsControllers.js";
+const routes = Router();
 
-routes.post('/goals',auth,addGoals)
-routes.get('/goals',auth,getGoals)
-export default routes
+routes.route("/user/goals").put(auth, updateGoals).post(auth, addGoals);
+routes.get("/user/goals/:token", auth, getGoals);
+
+export default routes;

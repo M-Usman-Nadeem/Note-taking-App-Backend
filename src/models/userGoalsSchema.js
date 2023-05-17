@@ -7,7 +7,7 @@ const userGoalsSchema=new Schema({
         ref: 'User',
       },
     mainTask: {
-        type:String,
+        type:Object,
         required: true,
       
       },
