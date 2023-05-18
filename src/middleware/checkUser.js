@@ -2,6 +2,7 @@ import userModel from '../models/userRegisterSchema.js'
 
 async function checkUser(req,res,next){
     const {name,email}=req.body;
+    console.log('inside')
     try{
         const userEmail=await userModel.findOne({email})
         if(userEmail) return res.end('Already Registered')

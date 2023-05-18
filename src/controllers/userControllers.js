@@ -9,6 +9,7 @@ async function hashedPassword(password){
   return hashedPass
 }
 async function doRegisterUser(req, res, next) {
+  console.log(req.body,'doRegisterUser')
   const { name, email, password } = req.body;
 
   try {
@@ -16,7 +17,7 @@ async function doRegisterUser(req, res, next) {
     const user = new userModel({
       name,
       email,
-      password: hashedPassword(password),
+      password: await hashedPassword(password),
     });
     await user.save();
     const token = jwt.sign({ id: user._id, email }, "Secret Key");
